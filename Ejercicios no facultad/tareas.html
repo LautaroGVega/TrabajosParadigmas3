@@ -1,0 +1,25 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>añadir tarea</h1>
+    <input id="ingresar" type="text">
+    <button onclick="sisi()">enviar</button>
+    <h2>tareas por hacer: </h2>
+    <ul id="lista"></ul>
+    <script>
+        function sisi(){
+            const tareaAgregada = document.createElement("li");
+            const texto = document.getElementById('ingresar').value;
+            const nodoTexto = document.createTextNode(texto);
+            tareaAgregada.appendChild(nodoTexto);
+            document.getElementById('lista').appendChild(tareaAgregada);
+            console.log(tareaAgregada);
+            document.getElementById('ingresar').value = '';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cambiar Videos</title>
+    <style>
+        button {
+            margin: 5px;
+            padding: 10px;
+            font-size: 16px;
+        }
+        video {
+            display: block;
+            margin: 20px auto;
+            width: 80%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Cambiar Video</h1>
+    
+    <button onclick="changeVideo(1)">Botón 1</button>
+    <button onclick="changeVideo(2)">Botón 2</button>
+    <button onclick="changeVideo(3)">Botón 3</button>
+
+    <video id="videoPlayer" autoplay>
+        <source id="videoSource" src="videos cortos   10 segundos.mp4" type="video/mp4">
+        <source id="videoSource1" src="Hermoso paisaje en el mar(video corto).mp4" type="video/mp4">
+        <source id="videoSource2" src="video playa corto mp4.mp4" type="video/mp4">
+    </video>
+
+    <script>
+    
+function changeVideo(numeroVideo) {
+
+    
+
+    const videoPlayer = document.getElementById('videoPlayer');
+    const videoSource = document.getElementById('videoSource');
+ 
+    if (numeroVideo === 1) {
+        videoSource.src = 'videos cortos   10 segundos.mp4'; 
+    } else if (numeroVideo === 2) {
+        videoSource.src = 'Hermoso paisaje en el mar(video corto).mp4';  
+    } else {
+        videoSource.src = 'video playa corto mp4.mp4'; 
+    }
+
+    
+
+    localStorage.setItem('video', numeroVideo)
+
+
+
+    videoPlayer.load();  
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+        
+        function onPageLoad(numeroVideo) {
+        
+        const ola = localStorage.getItem('video');
+        
+        console.log(ola)
+
+        const videoPlayer = document.getElementById('videoPlayer');
+        const videoSource = document.getElementById('videoSource');
+     
+        if (ola === 1) {
+            videoSource.src = 'videos cortos   10 segundos.mp4'; 
+        } else if (ola === 2) {
+            videoSource.src = 'Hermoso paisaje en el mar(video corto).mp4';  
+        } else {
+            videoSource.src = 'video playa corto mp4.mp4'; 
+        }
+    
+        localStorage.setItem('video', numeroVideo)
+    
+        videoPlayer.load(); 
+        }
+    
+            onPageLoad();
+        });
+    </script>
+</body>
+</html>

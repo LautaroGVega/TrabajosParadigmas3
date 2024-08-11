@@ -1,0 +1,61 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        #sie{
+            height: 100vh;
+            width: 100%;
+            display: flexbox;
+            justify-content: center;
+            text-align: center;
+        }
+        #sie #ultColor{
+            display: flex;
+           position: absolute;
+            width: 50px;
+            height: 50px;
+            border: 1px solid #000;
+            top: 20%;
+            left: 50%;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <div id="sie">
+            <h1 id="titulo">Hola</h1>
+            <input id="colorUsuario" type="text">
+            <button onclick="miloj()">Ingresar color</button>
+            <h2 id="subtitulo">la ultima vez elegiste:</h2>
+            <div id="ultColor"></div>
+        </div>
+        
+    </section>
+    <script>
+        function miloj(){
+            const colorElegido = document.getElementById('colorUsuario').value;
+            document.getElementById('sie').style.background = colorElegido;
+            if(colorElegido=="black"){
+                document.getElementById('titulo').style.color = "white";
+                document.getElementById('subtitulo').style.color = "white";
+            }else{
+                document.getElementById('titulo').style.color = "black";
+                document.getElementById('subtitulo').style.color = "black";
+            }
+            localStorage.setItem('color', colorElegido);
+
+        }
+
+        document.addEventListener('DOMContentLoaded',function(){
+            function yu(){
+            const ultimoColor = localStorage.getItem('color');
+            document.getElementById('ultColor').style.background = ultimoColor;
+            }
+            yu()
+        });
+    </script>
+</body>
+</html>

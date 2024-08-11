@@ -1,0 +1,52 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #principal{
+            transform: translateY(200%);
+            display:flexbox;
+            justify-content: center;
+            text-align: center;
+        }
+        #textoCambiante{
+            font-size: 3.0rem;
+            /* transform: translateY(50px); */
+        }
+        #Texto{
+            font-size: 2.0rem;
+        }
+        #Boton{
+            color: black;
+        }
+        #Boton:hover{
+            color: white;
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+    <section id="principal">
+        <h1 id="Texto">Prueba de texto</h1>
+        <input id="ingresoDeTexto" type="text">
+        <button id="Boton" onclick="ingresarMsj()">Ver mensaje</button>
+        <p id="textoCambiante">Escribi algo pls</p>
+    </section>
+</body>
+<script>
+    function ingresarMsj(){
+        const mensaje = document.getElementById('ingresoDeTexto').value;
+        document.getElementById('textoCambiante').textContent = mensaje;
+        localStorage.setItem('mensajeGuardar', mensaje)
+    }
+
+
+    document.addEventListener('DOMContentLoaded',function(){
+        function ola(){
+        document.getElementById('textoCambiante').textContent = localStorage.getItem('mensajeGuardar');
+        }
+        ola();
+    });
+</script>
+</html>

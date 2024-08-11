@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa con OpenStreetMap</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        #map {
+            height: 100vh;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        var map = L.map('map').setView([ -27.475460566095524, -58.852743099306096], 20);
+
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+        }).addTo(map);
+
+
+        function savePoints(points) {
+            localStorage.setItem('mapPoints', JSON.stringify(points));
+        }
+
+
+        var savedPoints = JSON.parse(localStorage.getItem('mapPoints')) || [];
+
+
+        savedPoints.forEach(function(latlng) {
+            L.marker([latlng.lat, latlng.lng]).addTo(map)
+                .bindPopup('Punto guardado: ' + latlng.lat + ', ' + latlng.lng)
+                .openPopup();
+        });
+
+        map.on('click', function(punto) {
+
+            var latlng = punto.latlng;
+
+
+            savedPoints.push(latlng);
+
+
+            savePoints(savedPoints);
+
+
+            L.marker([latlng.lat, latlng.lng]).addTo(map)
+                .bindPopup('Punto guardado: ' + latlng.lat + ', ' + latlng.lng)
+                .openPopup();
+        });
+    </script>
+</body>
+</html>
