@@ -1,0 +1,77 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+    <style>
+        #calculadora {
+            display: grid;
+            grid-template-columns: repeat(4, 50px);
+            grid-gap: 5px;
+            justify-content: center;
+            text-align: center;
+        }
+        input {
+            grid-column: span 4;
+            margin-bottom: 10px;
+            text-align: right;
+            padding: 5px;
+        }
+        button {
+            padding: 10px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        #enviar {
+            grid-column: span 4;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <section id="calculadora">
+        <input type="text" id="display" readonly>
+        <button value="1">1</button>
+        <button value="2">2</button>
+        <button value="3">3</button>
+        <button value="+">+</button>
+        <button value="4">4</button>
+        <button value="5">5</button>
+        <button value="6">6</button>
+        <button value="-">-</button>
+        <button value="7">7</button>
+        <button value="8">8</button>
+        <button value="9">9</button>
+        <button value="*">*</button>
+        <button value="0">0</button>
+        <button value="/">/</button>
+        <button value="C">C</button>
+        <button id="enviar">ENVIAR</button>
+    </section>
+    <script>
+        const buttons = document.querySelectorAll('button:not(#enviar)');
+        const display = document.getElementById('display');
+        const enviar = document.getElementById('enviar');
+
+
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                if (button.value === "C") {
+                    display.value = '';
+                } else {
+                    display.value += button.value;
+                }
+            });
+        });
+
+        enviar.addEventListener('click', () => {
+            try {
+                const result = eval(display.value);
+                display.value = result;
+            } catch (error) {
+                alert("Expresión inválida");
+            }
+        });
+    </script>
+</body>
+</html>
